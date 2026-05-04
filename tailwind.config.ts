@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Playfair Display', 'Georgia', 'serif'],
-        body: ['Lato', 'Helvetica Neue', 'sans-serif'],
+        heading: ['Cinzel', 'Georgia', 'serif'],
+        body: ['Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['Lato', 'Helvetica Neue', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -52,9 +53,7 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         gold: "hsl(var(--gold))",
-        blush: "hsl(var(--blush))",
-        "blush-dark": "hsl(var(--blush-dark))",
-        cream: "hsl(var(--cream))",
+        "gold-light": "hsl(var(--gold-light))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

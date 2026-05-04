@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lato:wght@300;400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,43 +6,44 @@
 
 @layer base {
   :root {
-    --background: 20 33% 98%;
-    --foreground: 20 10% 20%;
+    --background: 220 20% 6%;
+    --foreground: 40 30% 90%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 20 10% 20%;
+    --card: 220 20% 10%;
+    --card-foreground: 40 30% 90%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 10% 20%;
+    --popover: 220 20% 10%;
+    --popover-foreground: 40 30% 90%;
 
-    --primary: 340 60% 65%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 40 70% 50%;
+    --primary-foreground: 220 20% 6%;
 
-    --secondary: 30 30% 93%;
-    --secondary-foreground: 20 10% 20%;
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 40 30% 90%;
 
-    --muted: 20 20% 95%;
-    --muted-foreground: 20 10% 45%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 55%;
 
-    --accent: 40 60% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 40 70% 50%;
+    --accent-foreground: 220 20% 6%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 20 20% 90%;
-    --input: 20 20% 90%;
-    --ring: 340 60% 65%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 40 70% 50%;
 
     --radius: 0.75rem;
 
-    --gold: 40 60% 55%;
-    --blush: 340 60% 90%;
-    --blush-dark: 340 40% 75%;
-    --cream: 30 40% 96%;
+    --gold: 40 70% 50%;
+    --gold-light: 40 80% 65%;
+    --deep-navy: 220 40% 8%;
+    --cinematic-dark: 220 20% 4%;
 
-    --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'Lato', 'Helvetica Neue', sans-serif;
+    --font-heading: 'Cinzel', Georgia, serif;
+    --font-body: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Lato', 'Helvetica Neue', sans-serif;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -62,6 +63,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
+    overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
@@ -73,47 +75,117 @@
 
 @layer components {
   .section-padding {
-    @apply px-4 py-16 md:px-8 md:py-24 lg:px-16;
+    @apply px-4 py-20 md:px-8 md:py-32 lg:px-16;
   }
   .section-title {
     font-family: var(--font-heading);
-    @apply text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-4;
+    @apply text-3xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-wider uppercase;
+    color: hsl(var(--gold));
   }
   .section-subtitle {
-    @apply text-muted-foreground text-base md:text-lg max-w-2xl mx-auto;
+    @apply text-base md:text-lg max-w-2xl mx-auto;
+    color: hsl(var(--muted-foreground));
   }
   .gold-divider {
-    @apply w-24 h-0.5 mx-auto my-6;
-    background: hsl(var(--gold));
+    @apply w-32 h-px mx-auto my-8;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+  }
+  .cinematic-gradient {
+    background: radial-gradient(ellipse at center, hsl(220 20% 10%) 0%, hsl(220 20% 4%) 70%);
+  }
+  .perspective-container {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .card-3d:hover {
+    transform: rotateY(5deg) rotateX(5deg) translateZ(20px);
+  }
+  .text-gold-gradient {
+    background: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold)), hsl(40, 50%, 40%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glow-gold {
+    text-shadow: 0 0 40px hsla(var(--gold) / 0.3), 0 0 80px hsla(var(--gold) / 0.1);
   }
 }
 
 @layer utilities {
   @keyframes float-heart {
-    0% { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
-    50% { transform: translateY(-40vh) translateX(20px) scale(0.8); opacity: 0.6; }
+    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+    50% { transform: translateY(-40vh) translateX(20px) scale(0.8); opacity: 0.3; }
     100% { transform: translateY(-80vh) translateX(-10px) scale(0.5); opacity: 0; }
   }
   .animate-float-heart {
     animation: float-heart linear forwards;
   }
   @keyframes fade-in-up {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
   }
   .animate-fade-in-up {
-    animation: fade-in-up 1s ease-out forwards;
+    animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
   .animate-fade-in-up-delay-1 {
-    animation: fade-in-up 1s ease-out 0.2s forwards;
+    animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
     opacity: 0;
   }
   .animate-fade-in-up-delay-2 {
-    animation: fade-in-up 1s ease-out 0.4s forwards;
+    animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
     opacity: 0;
   }
   .animate-fade-in-up-delay-3 {
-    animation: fade-in-up 1s ease-out 0.6s forwards;
+    animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
     opacity: 0;
+  }
+  @keyframes cinematic-zoom {
+    from { transform: scale(1.15); }
+    to { transform: scale(1); }
+  }
+  .animate-cinematic-zoom {
+    animation: cinematic-zoom 8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes reveal-up {
+    from { clip-path: inset(100% 0 0 0); opacity: 0; }
+    to { clip-path: inset(0 0 0 0); opacity: 1; }
+  }
+  .animate-reveal-up {
+    animation: reveal-up 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  .animate-shimmer {
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+  @keyframes parallax-float {
+    0%, 100% { transform: translateY(0) rotateX(0); }
+    50% { transform: translateY(-15px) rotateX(2deg); }
+  }
+  .animate-parallax-float {
+    animation: parallax-float 6s ease-in-out infinite;
+  }
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+  .animate-glow-pulse {
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+  @keyframes particle-drift {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+  }
+  .animate-particle-drift {
+    animation: particle-drift linear infinite;
   }
 }
