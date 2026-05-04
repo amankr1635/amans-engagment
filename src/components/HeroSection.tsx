@@ -1,47 +1,109 @@
+import { useState, useEffect } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 300);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0">
+      {/* Cinematic background with Ken Burns effect */}
+      <div className="absolute inset-0 animate-cinematic-zoom">
         <img
           src={heroBg}
-          alt="Romantic sunset silhouette"
+          alt="Cinematic silhouette"
           width={1920}
           height={1080}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/30 to-foreground/60" />
       </div>
-      <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
-        <p className="font-body text-primary-foreground/80 tracking-[0.3em] uppercase text-sm mb-6 animate-fade-in-up">
-          Save the Date
-        </p>
-        <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground mb-4 animate-fade-in-up-delay-1">
-          Aman <span className="text-primary">❤️</span> Jeancy
-        </h1>
-        <p className="font-heading text-xl md:text-2xl text-primary-foreground/90 italic mb-8 animate-fade-in-up-delay-2">
-          We're getting engaged!
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-primary-foreground/80 text-sm md:text-base animate-fade-in-up-delay-3">
-          <span className="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-            11th May 2026
-          </span>
-          <span className="hidden sm:inline text-gold">•</span>
-          <span className="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            6:00 PM
-          </span>
-          <span className="hidden sm:inline text-gold">•</span>
-          <span className="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-            The Wedding House, Varanasi
-          </span>
+
+      {/* Dark cinematic overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+
+      {/* Cinematic letterbox bars */}
+      <div className="absolute top-0 left-0 right-0 h-12 md:h-20 bg-black z-20" />
+      <div className="absolute bottom-0 left-0 right-0 h-12 md:h-20 bg-black z-20" />
+
+      {/* Lens flare effect */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-radial animate-glow-pulse"
+        style={{
+          background: "radial-gradient(circle, hsla(40, 70%, 50%, 0.15) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Content with 3D perspective */}
+      <div className="relative z-30 text-center px-4 max-w-4xl mx-auto perspective-container">
+        <div
+          className={`transition-all duration-[2000ms] ease-out ${
+            loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+          style={{ transitionDelay: "200ms" }}
+        >
+          <p className="font-sans text-gold/70 tracking-[0.5em] uppercase text-xs md:text-sm mb-8 font-light">
+            You are cordially invited to
+          </p>
+        </div>
+
+        <div
+          className={`transition-all duration-[2000ms] ease-out ${
+            loaded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"
+          }`}
+          style={{ transitionDelay: "600ms" }}
+        >
+          <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-bold tracking-widest mb-2">
+            <span className="text-gold-gradient glow-gold">Aman</span>
+          </h1>
+          <p className="text-gold/50 text-3xl md:text-4xl font-body italic my-4">&</p>
+          <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-bold tracking-widest">
+            <span className="text-gold-gradient glow-gold">Jeancy</span>
+          </h1>
+        </div>
+
+        <div
+          className={`transition-all duration-[2000ms] ease-out ${
+            loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+          style={{ transitionDelay: "1200ms" }}
+        >
+          <div className="gold-divider mt-10" />
+          <p className="font-heading text-foreground/80 text-lg md:text-2xl tracking-[0.3em] uppercase mt-6">
+            Engagement Ceremony
+          </p>
+        </div>
+
+        <div
+          className={`transition-all duration-[2000ms] ease-out ${
+            loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+          style={{ transitionDelay: "1600ms" }}
+        >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-10 font-sans text-foreground/60 text-sm tracking-widest uppercase">
+            <span>11 May 2026</span>
+            <span className="hidden sm:inline text-gold/40">✦</span>
+            <span>6:00 PM</span>
+            <span className="hidden sm:inline text-gold/40">✦</span>
+            <span>Varanasi</span>
+          </div>
         </div>
       </div>
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-primary-foreground/60">
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+
+      {/* Scroll indicator */}
+      <div
+        className={`absolute bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 z-30 transition-all duration-[2000ms] ${
+          loaded ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ transitionDelay: "2200ms" }}
+      >
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-gold/30 text-xs font-sans tracking-[0.3em] uppercase">Scroll</p>
+          <div className="w-px h-12 bg-gradient-to-b from-gold/40 to-transparent animate-pulse" />
+        </div>
       </div>
     </section>
   );
