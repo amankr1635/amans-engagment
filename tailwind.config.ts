@@ -14,7 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Cinzel', 'Georgia', 'serif'],
+        // heading: ['Cinzel', 'Georgia', 'serif'],
+        heading: ['"Playfair Display"', 'serif'],
         body: ['Cormorant Garamond', 'Georgia', 'serif'],
         sans: ['Lato', 'Helvetica Neue', 'sans-serif'],
       },

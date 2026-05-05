@@ -22,7 +22,7 @@ const Index = () => {
       <OurStory />
       <Gallery />
       <InvitationMessage />
-      <RSVPSection />
+      {/* <RSVPSection /> */}
       <Footer />
     </div>
   );
