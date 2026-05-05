@@ -26,7 +26,7 @@ const EventDetails = () => {
       ),
       title: "Venue",
       detail: "The Wedding House",
-      sub: "Varanasi, India",
+      sub: "Ring Road, in front of Sankara eye hospital, Madhopur, Varanasi, Uttar Pradesh 221003",
     },
   ];
 
